@@ -18,10 +18,6 @@
       <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-      <![endif]-->
    </head>
    <body id="page-top" class="index">
       <!-- Navigation -->
@@ -70,149 +66,157 @@
                   <h3 style="color:#03a9f4;">Welcome to the world of help</h3>
                   <br>
                   <?php
-                     require_once('connectvars.php');
-                     
-                     session_start();
-                     
-                     $error_msg = "";
-                     
-                     
-                     
-                     
-                     if (empty($_SESSION['hm_id'])) {
-						 if(!empty($error_msg)){
-						 echo '<div class="alert alert-danger" align="center"><strong>' . $error_msg . '</strong></div>';
-						  $error_msg = "";
-						 }
-					 }
-                     elseif(isset($_SESSION['hm_id'])) {
-                     echo('<p class="login" align= "center"><br><br>You are logged in as <strong> ' . $_SESSION['id_proof'] . '</strong>.<br>Go to your home page: <a href="hm_index.php" style="cursor:pointer">Home</a><br><br>You can also logout here: <a href="logout.php" style="cursor:pointer">LogOut</a></p>');
-                     }
-					 
-					 
-					 //for signup
-					 require_once('appvars.php');
-                      
-                      $dbc = mysqli_connect(DB_HOST,DB_USER,DB_PASSWORD,DB_NAME);
-                      
-                      if(isset($_POST['signup'])){
-                     	$_SESSION['first_name'] = $first_name = mysqli_real_escape_string($dbc,trim($_POST['firstname']));
-                     	$_SESSION['last_name'] = $last_name = mysqli_real_escape_string($dbc,trim($_POST['lastname']));
-                     	$_SESSION['id_proof'] = $id_proof = mysqli_real_escape_string($dbc,trim($_POST['idproof']));
-                     	$_SESSION['password'] = $password1 = mysqli_real_escape_string($dbc,trim($_POST['password1']));
-                     	$password2 = mysqli_real_escape_string($dbc,trim($_POST['password2']));
-                     	
-                     	
-                     	if(!empty($first_name) && !empty($last_name) && !empty($id_proof) && !empty($password1) && !empty($password2)){
-                     		if($password1 == $password2){
-                     			$query = "SELECT * FROM hm_profile WHERE id_proof = '$id_proof'";
-                     			
-                     			$data = mysqli_query($dbc, $query);
-                     						   
-                     			
-                     			if(mysqli_num_rows($data) == 0){
-								
-									$now = date("Y-m-d H:i:s");
-                     								  
-                     				$query = "INSERT INTO hm_profile(hm_id, first_name, last_name, id_proof, password, date_of_join) VALUES" .
-                     						 "( 0, '$first_name', '$last_name', '$id_proof', SHA('$password1'), '$now')";
-                     				mysqli_query($dbc, $query);
-									
-									$user_id= mysqli_insert_id($dbc);
-									if(!empty($user_id)) {
-										$query1 = "INSERT INTO swap(user_id, box_0) VALUES($user_id, 10)";
-										mysqli_query($dbc, $query1);
-										
-										$query2 = "INSERT INTO `chat`(`chat_id`, `sender_id`, `sent_on`, `message`, `reciver_id`, `seen`) VALUES ( 0 , 10, '$now', 'Hello, Welcome to HelpMiii. If you need any support chat with me on HelpMiii Support.', $user_id, 0)";
-										mysqli_query($dbc, $query2);
-										
-										$now1 = date("l jS \of F Y");
-										$user_hm_id = $user_id;
-										$message = 'Joined HelpMiii on <br><br>'.$now1;
-										$image = '';
-										$video = '';
-										$query3 = "INSERT INTO `posts` (`post_hm_id`, `desc`, `image_url`, `vid_url`,`date`,`special`) VALUES ('$user_hm_id', '$message', '$image', '$video', '$now', 1)";
-										mysqli_query($dbc, $query3);
-										
-									}
-									
-									
-                     	
-                     				
-                     			}
-								else{
-								echo'<div class="alert alert-danger" align="center"><strong>An <b>account already exits</b> for this E-mail address. Please use a different address.</strong></div>';
-								$id_proof="";
-								}
-									$query1 = "SELECT hm_id, id_proof FROM hm_profile WHERE id_proof = '$id_proof'";
-                     			
-                     				$data1 = mysqli_query($dbc, $query1);
-                     				   if(mysqli_num_rows($data1) == 1){
-                     							$row1 = mysqli_fetch_array($data1);
-                     						   	$_SESSION['hm_id'] = $row1['hm_id'];
-                     							setcookie('hm_id', $row1['hm_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
-                     							setcookie('id_proof', $row1['id_proof'], time() + (60 * 60 * 24 * 30));  // expires in 30 days
-												
-												   $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/hm_index.php';
-												   header('Location: ' . $home_url);
-												   mysqli_close($dbc);
-												   exit();
-                     				   }
-                     		}
-                     		else{
-                     			echo'<div class="alert alert-danger" align="center">You must enter the <b>same password</b> twice.</div>';
-                     		}
-                     	}
-                     	else{
-                     		echo'<div class="alert alert-danger" align="center">You must enter <b>all</b> of the signup data.</div>';
-                     	}
-                      }
-                      mysqli_close($dbc);
-                     
-					 //for login
-					 if (!isset($_SESSION['hm_id'])) {
-                     if (isset($_POST['login'])) {
-                     
-                      $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-                     
-                     
-                      $user_id_proof = mysqli_real_escape_string($dbc, trim($_POST['idproof']));
-                      $user_password = mysqli_real_escape_string($dbc, trim($_POST['password']));
-                     
-                      if (!empty($user_id_proof) && !empty($user_password)) {
-                     $query = "SELECT hm_id, id_proof FROM hm_profile WHERE id_proof = '$user_id_proof' AND password = SHA('$user_password')";
-                     $data = mysqli_query($dbc, $query);
-                     
-                     if (mysqli_num_rows($data) == 1) {
-                       $row = mysqli_fetch_array($data);
-                       $_SESSION['hm_id'] = $row['hm_id'];
-                       $_SESSION['id_proof'] = $row['id_proof'];
-                       setcookie('id', $row['hm_id'], time() + (60 * 60 * 24 * 30));    // expires in 30 days
-                       setcookie('id_proof', $row['id_proof'], time() + (60 * 60 * 24 * 30));  // expires in 30 days
-                       $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/hm_index.php';
-                       header('Location: ' . $home_url);
-                       mysqli_close($dbc);
-                       exit();
-                       }
-                     else {
-                       // The username/password are incorrect so set an error message
-                       $error_msg = ' "Sorry, you must enter a valid username and password to log in." ';
-                     }
-                      }
-                      else {
-                     // The username/password weren't entered so set an error message
-                     $error_msg = ' "Sorry, you must enter your username and password to log in." ';
-                      }
-                      
-                     }
-                     }
-					 
-					 if (empty($_SESSION['hm_id'])) {
-					  	if(!empty($error_msg)){
-							echo '<div class="alert alert-danger" align="center"><strong>' . $error_msg . '</strong></div>';
-							 $error_msg = "";
-						 }
-                     ?>
+require_once ('connectvars.php');
+
+session_start();
+
+$error_msg = "";
+
+if (empty($_SESSION['hm_id']))
+{
+    if (!empty($error_msg))
+    {
+        echo '<div class="alert alert-danger" align="center"><strong>' . $error_msg . '</strong></div>';
+        $error_msg = "";
+    }
+}
+elseif (isset($_SESSION['hm_id']))
+{
+    echo ('<p class="login" align= "center"><br><br>You are logged in as <strong> ' . $_SESSION['id_proof'] . '</strong>.<br>Go to your home page: <a href="hm_index.php" style="cursor:pointer">Home</a><br><br>You can also logout here: <a href="logout.php" style="cursor:pointer">LogOut</a></p>');
+}
+
+//for signup
+require_once ('appvars.php');
+
+$dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+if (isset($_POST['signup']))
+{
+    $_SESSION['first_name'] = $first_name = mysqli_real_escape_string($dbc, trim($_POST['firstname']));
+    $_SESSION['last_name'] = $last_name = mysqli_real_escape_string($dbc, trim($_POST['lastname']));
+    $_SESSION['id_proof'] = $id_proof = mysqli_real_escape_string($dbc, trim($_POST['idproof']));
+    $_SESSION['password'] = $password1 = mysqli_real_escape_string($dbc, trim($_POST['password1']));
+    $password2 = mysqli_real_escape_string($dbc, trim($_POST['password2']));
+
+    if (!empty($first_name) && !empty($last_name) && !empty($id_proof) && !empty($password1) && !empty($password2))
+    {
+        if ($password1 == $password2)
+        {
+            $query = "SELECT * FROM hm_profile WHERE id_proof = '$id_proof'";
+
+            $data = mysqli_query($dbc, $query);
+
+            if (mysqli_num_rows($data) == 0)
+            {
+
+                $now = date("Y-m-d H:i:s");
+
+                $query = "INSERT INTO hm_profile(hm_id, first_name, last_name, id_proof, password, date_of_join) VALUES" . "( 0, '$first_name', '$last_name', '$id_proof', SHA('$password1'), '$now')";
+                mysqli_query($dbc, $query);
+
+                $user_id = mysqli_insert_id($dbc);
+                if (!empty($user_id))
+                {
+                    $query1 = "INSERT INTO swap(user_id, box_0) VALUES($user_id, 10)";
+                    mysqli_query($dbc, $query1);
+
+                    $query2 = "INSERT INTO `chat`(`chat_id`, `sender_id`, `sent_on`, `message`, `reciver_id`, `seen`) VALUES ( 0 , 10, '$now', 'Hello, Welcome to HelpMiii. If you need any support chat with me on HelpMiii Support.', $user_id, 0)";
+                    mysqli_query($dbc, $query2);
+
+                    $now1 = date("l jS \of F Y");
+                    $user_hm_id = $user_id;
+                    $message = 'Joined HelpMiii on <br><br>' . $now1;
+                    $image = '';
+                    $video = '';
+                    $query3 = "INSERT INTO `posts` (`post_hm_id`, `desc`, `image_url`, `vid_url`,`date`,`special`) VALUES ('$user_hm_id', '$message', '$image', '$video', '$now', 1)";
+                    mysqli_query($dbc, $query3);
+
+                }
+
+            }
+            else
+            {
+                echo '<div class="alert alert-danger" align="center"><strong>An <b>account already exits</b> for this E-mail address. Please use a different address.</strong></div>';
+                $id_proof = "";
+            }
+            $query1 = "SELECT hm_id, id_proof FROM hm_profile WHERE id_proof = '$id_proof'";
+
+            $data1 = mysqli_query($dbc, $query1);
+            if (mysqli_num_rows($data1) == 1)
+            {
+                $row1 = mysqli_fetch_array($data1);
+                $_SESSION['hm_id'] = $row1['hm_id'];
+                setcookie('hm_id', $row1['hm_id'], time() + (60 * 60 * 24 * 30)); // expires in 30 days
+                setcookie('id_proof', $row1['id_proof'], time() + (60 * 60 * 24 * 30)); // expires in 30 days
+                $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/hm_index.php';
+                header('Location: ' . $home_url);
+                mysqli_close($dbc);
+                exit();
+            }
+        }
+        else
+        {
+            echo '<div class="alert alert-danger" align="center">You must enter the <b>same password</b> twice.</div>';
+        }
+    }
+    else
+    {
+        echo '<div class="alert alert-danger" align="center">You must enter <b>all</b> of the signup data.</div>';
+    }
+}
+mysqli_close($dbc);
+
+//for login
+if (!isset($_SESSION['hm_id']))
+{
+    if (isset($_POST['login']))
+    {
+
+        $dbc = mysqli_connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
+
+        $user_id_proof = mysqli_real_escape_string($dbc, trim($_POST['idproof']));
+        $user_password = mysqli_real_escape_string($dbc, trim($_POST['password']));
+
+        if (!empty($user_id_proof) && !empty($user_password))
+        {
+            $query = "SELECT hm_id, id_proof FROM hm_profile WHERE id_proof = '$user_id_proof' AND password = SHA('$user_password')";
+            $data = mysqli_query($dbc, $query);
+
+            if (mysqli_num_rows($data) == 1)
+            {
+                $row = mysqli_fetch_array($data);
+                $_SESSION['hm_id'] = $row['hm_id'];
+                $_SESSION['id_proof'] = $row['id_proof'];
+                setcookie('id', $row['hm_id'], time() + (60 * 60 * 24 * 30)); // expires in 30 days
+                setcookie('id_proof', $row['id_proof'], time() + (60 * 60 * 24 * 30)); // expires in 30 days
+                $home_url = 'http://' . $_SERVER['HTTP_HOST'] . '/hm_index.php';
+                header('Location: ' . $home_url);
+                mysqli_close($dbc);
+                exit();
+            }
+            else
+            {
+                // The username/password are incorrect so set an error message
+                $error_msg = ' "Sorry, you must enter a valid username and password to log in." ';
+            }
+        }
+        else
+        {
+            // The username/password weren't entered so set an error message
+            $error_msg = ' "Sorry, you must enter your username and password to log in." ';
+        }
+
+    }
+}
+
+if (empty($_SESSION['hm_id']))
+{
+    if (!empty($error_msg))
+    {
+        echo '<div class="alert alert-danger" align="center"><strong>' . $error_msg . '</strong></div>';
+        $error_msg = "";
+    }
+?>
                   <div class="col-lg-6">
                      <div class="row">
                         <div class="col-lg-12 text-center">
@@ -222,7 +226,7 @@
                      </div>
                      <div class="row">
                         <div class="col-lg-11">
-							<form action="<?php echo $_SERVER['PHP_SELF'];?>" name="login_form" method="post" autocomplete="off">
+							<form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="login_form" method="post" autocomplete="off">
                               <div class="row control-group">
                                  <div class="form-group col-xs-12 floating-label-form-group controls">
                                     <label>Email Address</label>
@@ -253,11 +257,11 @@
                      </div>
                   </div>
 				  <?php
-					  }
-					  
-					  
-					  if(!isset($_SESSION['hm_id'])) {
-					?>
+}
+
+if (!isset($_SESSION['hm_id']))
+{
+?>
                   
                   <div class="col-lg-6">
                      <div class="row">
@@ -268,7 +272,7 @@
                      </div>
                      <div class="row">
                         <div class="col-lg-11">
-							<form action="<?php echo $_SERVER['PHP_SELF'];?>" name="signup_form" method="post" autocomplete="off">
+							<form action="<?php echo $_SERVER['PHP_SELF']; ?>" name="signup_form" method="post" autocomplete="off">
                               <div class="row control-group">
                                  <div class="form-group col-xs-6 floating-label-form-group controls">
                                     <label>First Name</label>
@@ -312,8 +316,8 @@
                      </div>
                   </div>
                   <?php
-				  }
-				  ?>
+}
+?>
                </div>
             </div>
          </div>
@@ -464,7 +468,7 @@
                   <div class="team-member">
                      <img src="boot/img/team/2.jpg" class="img-responsive img-circle" alt="">
                      <h4>Rahatullah Ansari</h4>
-                     <p class="text-muted">Founder & C.E.O.</p>
+                     <p class="text-muted">Founder</p>
                      <ul class="list-inline social-buttons">
                         <li><a href="#"><i class="fa fa-twitter"></i></a>
                         </li>
