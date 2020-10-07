@@ -260,15 +260,6 @@
 		</form>
 
 	</div>
-	<div class="news" id="news" align="left">
-	<p align="center">_.: THE ULTIMATE TIMES :._</p>
-	<div id="feedControl" align="center">Loading...</div>
-	</div>
-	
-	<h6>
-	  ©2016 HELPMIII. All rights reserved.  
-	</h6>
-
 </body>
 </html>
 
