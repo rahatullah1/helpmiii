@@ -1,0 +1,249 @@
+/* CSS Document */
+body{
+    min-width: 700px;
+	background-image:url(bg_03.jpg);
+	background-position:center;
+	width:auto;
+	margin:auto;
+	}
+
+.logo{
+	width:80px;
+	height:40px;
+	margin-left:30px;
+	margin-right:20px;
+	float:left;
+	border-color:#0080FF;
+	border-style:ridge;
+	border-width:2px;
+	box-shadow:-1px -1px 2px royalblue;
+	border-radius:3px;
+	transition: width 2s, height 2s, transform 2s;
+	}
+
+.logo:hover{
+	width:90px;
+	height:45px;
+	border-color:#0080FF;
+	border-style:ridge;
+	border-width:2px;
+	box-shadow:-2px -2px 2px royalblue;
+	border-radius:3px;
+	transform:scale(1.1) rotate(350deg);
+	}
+	
+nav ul {
+	list-style-type:none;
+	margin-top:-50px;
+	margin-right:30px;
+    padding: 0;
+	overflow:hidden;
+}
+
+nav li{
+	float:right;
+	
+	}
+
+nav a {
+	display:block;
+    width: 80px;
+	height:20px;
+	color:#333333;
+	font-size:18px;
+	background-color:#FFFFFF;
+	text-align:center;
+	text-decoration:blink;
+	box-shadow:2px 2px 7px royalblue;
+}
+
+nav a:hover{
+	
+	background-color:#999999;
+	color:#000000;
+	text-shadow:#666666;
+	border:thin;
+	border-color:#666666;
+	border-radius:5px;
+	transform:scale(1.1) rotate(-1deg);
+}
+
+header{
+	width:1260px;
+	height:50px;
+	margin-top:1px;
+	}
+	
+header h1 em{
+	color:#0000FF;
+	font-family:Gabriola;
+	letter-spacing:1px;
+	}
+
+header h1 em:hover{
+	color:lime;
+	text-shadow: 1px 1px 3px yellow;
+	}
+	
+h1{
+	margin-top:30px;
+	margin-left:40px;
+	width:800px;
+	height:40px;
+	font-size:37px;
+	font-family:Garamond, "Franklin Gothic Medium", Impact, "Lucida Sans Unicode", "Monotype Corsiva", "Segoe Script";
+	color:#00FF40;
+	text-shadow: 2px 1px 2px #93EBFD;
+	}
+	
+h2{
+	font-family:"Courier New", Courier, monospace;
+	font-size:26px;
+	color:#000079;
+	text-shadow: 1px 1px 2px grey;
+	margin-left:20px;
+	margin-top:-9px;
+	}
+
+span{
+	color:#999999;
+	font-family:"Segoe Print";
+	font-size: 14px;
+	text-shadow:0 2px 1px black;
+	letter-spacing:1px;
+	}
+
+.signup p{
+	color:#4169E1;
+	font-family:Gabriola;
+	font-size:22px;
+	text-shadow: 1px 1px 3px blue;
+	letter-spacing: 2px;
+	margin-left:10px;
+	}
+	
+strong{
+	color:#FF4500;
+	font:Geneva, Arial, Helvetica, sans-serif;
+	font-size:inherit;
+	}
+	
+label{
+	cursor:auto;
+	cursor:pointer;
+	text-shadow:#999999;
+	font-family:"Times New Roman", Times, serif;
+	color:#000000;
+	}
+
+input{
+	cursor:e-resize;
+	cursor:pointer;
+	font-size:13px;
+	font-family:"Segoe UI";
+	letter-spacing:-0.6px;
+	}
+	
+.wrap{
+	height:400px;
+	font-size:15px;
+	}
+	
+.direct_login{
+        margin-top:-10px;
+}
+
+.login{
+	float:left;
+	width:475px;
+	height:120px;
+	border-radius:3px 40px 10px 40px;
+	background-color:#FFFFFF;
+	opacity:0.7;
+	filter:alpha(opacity=90);
+	box-shadow:1px 2px 6px skyblue;
+	}
+	
+.login:hover{
+	background-color:#D5EAFF;
+	transform:scale(1.0125);
+	}
+	
+.login h2{
+	font-family:"Courier New", Courier, monospace;
+	font-size:26px;
+	color:#000079;
+	text-shadow: 1px 1px 2px grey;
+	margin-left:20px;
+	margin-top:17px;
+	}
+
+.signup{
+	float:right;
+	width:500px;
+	height:440px;
+	border-radius:50px 3px 50px 50px;
+	background-color:#FFFFFF;
+	opacity:0.8;
+	filter:alpha(opacity=90);
+	box-shadow:-3px 5px 6px paleturquoise;
+	border:solid 1px;
+	border-color:paleturquoise;
+	}
+	
+.signup:hover{
+	background-color:#BBE9F7;
+	}
+
+.signup ul{
+	margin-left:5px;
+	list-style:none;
+	}
+	
+.g{
+	margin-left:0px;
+	}
+	
+.f, .m{
+	display:inline-block;
+	margin-left:25px;
+	}
+	
+.news{
+	float:inherit;
+	margin-top:-205px;
+	margin-left:111px;
+	width:450px;
+	height:233px;
+	border:thin;
+	border-style:dotted;
+	border-color:#333333;
+	border-radius:5px 5px 7px 7px;
+	background-color:#FFFFFF;
+	}
+	
+.news:hover{
+	transform:scale(1.02);
+	}
+	
+h6{
+	float:left;
+	margin-left:130px;
+	color:#000000;
+	font-size:12px;
+	text-shadow:1px -2px 4px white;
+	background-color:#EAEAEA;
+	opacity:0.7;
+	filter:alpha(opacity=50);
+	border-radius:4px;
+	box-shadow: -6px -2px 9px white;
+	}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,361 @@
+body{
+                    min-width: 1000px;
+	background-image:url(worldmap.JPG);
+	background-position:center;
+	width:auto;
+	margin:auto;
+	}
+
+.logo{
+	width:38px;
+	height:36px;
+	margin-left:30px;
+	margin-right:20px;
+        margin-top:10px;
+	float:left;
+	transition: width 2s, height 2s, transform 2s;
+	}
+
+.logo:hover{
+	width:46px;
+	height:45px;
+	transform:scale(1.2) rotate(350deg);
+	}
+
+nav {
+        width:240px;
+        float:right; 
+        }
+	
+nav ul {
+	list-style-type:none;
+	margin-top:-50px;
+        padding: 0;
+	overflow:hidden;
+        background-color:#FFFFFF;
+	opacity:0.7;
+        }
+
+nav li{
+	float:right;
+	}
+
+nav a {
+	display:block;
+        width: 80px;
+	height:20px;
+	color:#333333;
+	font-size:18px;
+	background-color:#FFFFFF;
+	text-align:center;
+	text-decoration:blink;
+	box-shadow:2px 2px 7px royalblue;
+        }
+
+nav a:hover{
+	background-color:#999999;
+	color:#000000;
+	text-shadow:#666666;
+	border:thin;
+	border-color:#666666;
+	border-radius:5px;
+	transform:scale(1.1) rotate(-1deg);
+        }
+
+header{
+	width:1260px;
+	height:50px;
+	margin-top:-25px;
+	}
+	
+header h1 em{
+	color:#0000FF;
+	font-family:Gabriola;
+	letter-spacing:1px;
+        text-shadow: 1px 1px 3px white;
+	}
+
+header h1 em:hover{
+	color:lime;
+	text-shadow: 1px 1px 3px white;
+	}
+	
+h1{
+	margin-top:30px;
+	margin-left:40px;
+	width:800px;
+	height:40px;
+	font-size:40px;
+	font-family:Garamond, "Franklin Gothic Medium", Impact, "Lucida Sans Unicode", "Monotype Corsiva", "Segoe Script";
+	color:#00FF40;
+	text-shadow: 2px 1px 2px #93EBFD;
+	}
+	
+h2{
+	font-family:"Courier New", Courier, monospace;
+	font-size:26px;
+	color:#000079;
+	text-shadow: 1px 1px 2px grey;
+	margin-left:20px;
+	margin-top:-9px;
+	}
+
+span{
+	color:black;
+	font-family:"Segoe Print";
+	font-size: 14px;
+	text-shadow:1px 1px 3px black;
+	letter-spacing:1px;
+	}
+
+.signup p{
+	color:#4169E1;
+	font-family:Gabriola;
+	font-size:22px;
+	text-shadow: 1px 1px 3px blue;
+	letter-spacing: 2px;
+	margin-left:10px;
+	}
+	
+strong{
+	color:#FF4500;
+	font:Geneva, Arial, Helvetica, sans-serif;
+	font-size:inherit;
+	}
+	
+label { 
+		position:	relative;
+		clear:  	both; 
+		display: 	block; 
+                font-size:12px;
+		font-family: "kaffeesatz-1","kaffeesatz-2",sans-serif; 
+	}
+
+input[type=text],input[type=password],input[type=email]{
+  cursor:e-resize;
+  cursor:pointer;
+  height: 28px;
+  width:170px;
+  padding: 4px 8px;
+  border-color:lightcyan;
+  border-width:2px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px cornflowerblue;
+  }
+
+input:focus{
+  border-color:royalblue;
+  border-width:2px;
+  border-radius: 5px;
+}
+
+input:invalid { background: #fff url(images/icon/invalid.png) no-repeat center right; }
+input:valid { background: #f3f8ed url(images/icon/valid.png) no-repeat center right; }	
+	
+	
+input[type=submit] { 
+		background:white; 
+		padding: 			2px 2px 3px; 
+		color: 				lime; 
+		font-weight: 		bold;  
+		position: 			relative; 
+		cursor: 			pointer; 
+		font-size: 			15px; 
+		font-family: 		'Oleo Script', Helvetica, Arial;
+		-moz-border-radius: 4px; 
+		-webkit-border-radius: 4px; 
+		-ms-border-radius: 	4px; 
+		border-radius: 		9px; 
+		-moz-box-shadow: 	1px 1px 2px lawngreen; 
+		-webkit-box-shadow: 1px 1px 2px lawngreen; 
+		-ms-box-shadow: 	1px 1px 2px lawngreen; 
+		box-shadow: 		1px 1px 2px lawngreen; 		
+		-webkit-transition: all 0.2s linear
+	}
+	
+input[type=submit]:hover	{ 
+                color:dodgerblue;
+		-webkit-transform:	scale(1.05); 
+		-moz-box-shadow: 	2px 1px 3px deepskyblue; 
+		-webkit-box-shadow: 2px 1px 3px deepskyblue; 
+		box-shadow: 		2px 1px 3px deepskyblue; 
+	}
+	
+li p{
+	font-family:"Times New Roman", Times, serif;
+	}
+	
+.wrap{
+	height:400px;
+	font-size:15px;
+	}
+	
+.login{
+	float:left;
+	width:475px;
+	height:120px;
+	margin-top:30px;
+	border-radius:3px 40px 10px 40px;
+	background-color:#FFFFFF;
+	opacity:0.7;
+	filter:alpha(opacity=90);
+	box-shadow:1px 2px 6px skyblue;
+	}
+	
+.login:hover{
+	background-color:#D5EAFF;
+	}
+	
+.login h2{
+	font-family:"Courier New", Courier, monospace;
+	font-size:26px;
+	color:#000079;
+	text-shadow: 1px 1px 2px grey;
+	margin-left:20px;
+	margin-top:17px;
+	}
+
+.signup{
+	float:right;
+	width:400px;
+	height:530px;
+	margin-top:10px;
+	border-radius:50px 3px 50px 50px;
+	background-color:#FFFFFF;
+	opacity:0.8;
+	filter:alpha(opacity=90);
+	box-shadow:-3px 5px 6px paleturquoise;
+	border:solid 1px;
+	border-color:paleturquoise;
+	}
+	
+.signup:hover{
+	background-color:#DEF;
+	}
+
+.signup ul{
+	margin-left:5px;
+	list-style:none;
+	}
+	
+.g{
+	margin-left:0px;
+	}
+	
+.f, .m{
+	display:inline-block;
+	margin-left:25px;
+	}
+	
+.news{
+	float:inherit;
+	margin-top:-205px;
+	margin-left:111px;
+	width:450px;
+	height:233px;
+	border:thin;
+	border-style:dotted;
+	border-color:#333333;
+	border-radius:5px 5px 7px 7px;
+        background-color:#FFFFFF;
+	opacity:0.9;
+	}
+	
+h6{
+	float:left;
+	margin-left:130px;
+	color:#000000;
+	font-size:12px;
+	text-shadow:1px -2px 4px white;
+	background-color:#EAEAEA;
+	opacity:0.7;
+	filter:alpha(opacity=50);
+	border-radius:4px;
+	box-shadow: -6px -2px 9px white;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
