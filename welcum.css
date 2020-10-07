@@ -6,22 +6,6 @@ body{
 	margin:auto;
 	}
 
-.logo{
-	width:38px;
-	height:36px;
-	margin-left:30px;
-	margin-right:20px;
-        margin-top:10px;
-	float:left;
-	transition: width 2s, height 2s, transform 2s;
-	}
-
-.logo:hover{
-	width:46px;
-	height:45px;
-	transform:scale(1.2) rotate(350deg);
-	}
-
 nav {
         width:240px;
         float:right; 
@@ -130,24 +114,6 @@ label {
                 font-size:12px;
 		font-family: "kaffeesatz-1","kaffeesatz-2",sans-serif; 
 	}
-
-input[type=text],input[type=password],input[type=email]{
-  cursor:e-resize;
-  cursor:pointer;
-  height: 28px;
-  width:170px;
-  padding: 4px 8px;
-  border-color:lightcyan;
-  border-width:2px;
-  border-radius: 4px;
-  box-shadow: 1px 1px 3px cornflowerblue;
-  }
-
-input:focus{
-  border-color:royalblue;
-  border-width:2px;
-  border-radius: 5px;
-}
 
 input:invalid { background: #fff url(images/icon/invalid.png) no-repeat center right; }
 input:valid { background: #f3f8ed url(images/icon/valid.png) no-repeat center right; }	
